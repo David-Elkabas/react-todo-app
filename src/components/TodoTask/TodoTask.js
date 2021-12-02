@@ -3,7 +3,7 @@ import { RiCloseCircleLine, RiEditBoxLine } from "react-icons/ri";
 import Styles from "./TodoTask.module.css";
 
 const TodoTask = (props) => {
-  const { title, isCompleted, id, removeTodo, completeTodo } = props;
+  const { title, isCompleted, id, removeTodo, completeTodo, editTodo } = props;
 
   return (
     <div
@@ -17,9 +17,7 @@ const TodoTask = (props) => {
           onClick={() => removeTodo(id)}
           className={Styles.delete_icon}
         />
-        <RiEditBoxLine
-        // onClick={() => setEdit({ id: todo.id, value: title })}
-        />
+        <RiEditBoxLine onClick={() => editTodo({ id, title })} />
       </div>
     </div>
   );

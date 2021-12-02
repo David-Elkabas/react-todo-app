@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import _uniqueId from "lodash/uniqueId";
 import Styles from "./AddTodo.module.css";
 
 const AddTodo = (props) => {

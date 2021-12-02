@@ -10,14 +10,23 @@ function App() {
   const [listToShow, setListToShow] = useState([]);
   const url = "https://jsonplaceholder.typicode.com/todos";
   const [result, error, isLoading] = useFetchHook(url);
+  const [numOfTodo, setNumOfTodo] = useState(4);
 
   useEffect(() => {
-    setListToShow(result);
+    if (result !== null) {
+      setListToShow(result.slice(0, 4));
+    }
   }, [result]);
 
   const removeTodo = (id) => {
     const removedArr = [...listToShow].filter((todo) => todo.id !== id);
     setListToShow(removedArr);
+  };
+  const addNewTodo = (newTodo) => {
+    console.log(newTodo);
+    let newList = [newTodo, ...listToShow];
+    setListToShow(newList);
+    console.log(listToShow);
   };
 
   return (
@@ -30,13 +39,14 @@ function App() {
           element={
             <Home
               listToShow={listToShow}
+              numOfTodo={numOfTodo}
               error={error}
               isLoading={isLoading}
               removeTodo={removeTodo}
             />
           }
         />
-        <Route path="addTodo" element={<AddTodo />} />
+        <Route path="addTodo" element={<AddTodo addNewTodo={addNewTodo} />} />
       </Routes>
     </div>
   );

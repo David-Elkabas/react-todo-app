@@ -2,8 +2,7 @@ import TodoTask from "../TodoTask/TodoTask";
 import { useState, useEffect } from "react";
 
 const Home = (props) => {
-  const [numOfTodo, setNumOfTodo] = useState(4);
-  const { listToShow, error, isLoading, removeTodo } = props;
+  const { listToShow, error, isLoading, removeTodo, numOfTodo } = props;
 
   const [todos, setTodos] = useState([]);
 
@@ -12,7 +11,6 @@ const Home = (props) => {
   }, [listToShow]);
 
   const removeOneTodo = (id) => {
-    console.log("here");
     removeTodo(id);
   };
 
@@ -34,21 +32,17 @@ const Home = (props) => {
         {error && <p>Error: {error} </p>};
         {todos &&
           todos.map((todo) => {
-            if (todo.id <= numOfTodo) {
-              return (
-                <div key={todo.id}>
-                  <TodoTask
-                    title={todo.title}
-                    isCompleted={todo.completed}
-                    id={todo.id}
-                    removeTodo={removeOneTodo}
-                    completeTodo={completeTodo}
-                  />
-                </div>
-              );
-            } else {
-              return <></>;
-            }
+            return (
+              <div key={todo.id}>
+                <TodoTask
+                  title={todo.title}
+                  isCompleted={todo.completed}
+                  id={todo.id}
+                  removeTodo={removeOneTodo}
+                  completeTodo={completeTodo}
+                />
+              </div>
+            );
           })}
       </div>
     );

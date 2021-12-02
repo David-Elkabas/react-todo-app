@@ -1,9 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import _uniqueId from "lodash/uniqueId";
 import Styles from "./AddTodo.module.css";
 
-const AddTodo = () => {
+const AddTodo = (props) => {
+  const _ = require("lodash");
+  const { addNewTodo } = props;
   const {
     register,
     handleSubmit,
@@ -12,7 +15,15 @@ const AddTodo = () => {
   const [isValid, setIsValid] = useState(false);
 
   const onSubmit = (data) => {
-    console.log(data);
+    let uniqueID = _.uniqueId(1);
+    let newTodo = {
+      completed: false,
+      id: uniqueID,
+      title: data.todoTask,
+      userId: 1,
+    };
+    // console.log(newTodo);
+    addNewTodo(newTodo);
     setIsValid(true);
   };
 
@@ -27,9 +38,7 @@ const AddTodo = () => {
           />
 
           {errors.todoTask && (
-            <p className={Styles.error}>
-              Your Blog name is less than 3 characters
-            </p>
+            <p className={Styles.error}>Your TODO is less than 3 characters</p>
           )}
         </div>
 

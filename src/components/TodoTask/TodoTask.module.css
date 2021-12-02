@@ -1,0 +1,30 @@
+.complete {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+.todo_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  color: black;
+  cursor: pointer;
+  font-weight: 700;
+  background: linear-gradient(
+    90deg,
+    rgb(90, 104, 231) 0%,
+    rgb(17, 255, 164) 100%
+  );
+  padding: 16px;
+  border-radius: 5px;
+  width: 30%;
+}
+.icons {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+.delete_icon {
+  margin-right: 10px;
+}

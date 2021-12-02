@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useFetchHook } from "./hooks/useFetchHook";
+import Home from "./components/Home/Home";
+import AddTodo from "./components/AddTodo/AddTodo";
+import NavBar from "./components/NavBar/NavBar";
+import "./App.css";
 
 function App() {
+  const [listToShow, setListToShow] = useState([]);
+  const url = "https://jsonplaceholder.typicode.com/todos";
+  const [result, error, isLoading] = useFetchHook(url);
+
+  useEffect(() => {
+    setListToShow(result);
+  }, [result]);
+
+  const removeTodo = (id) => {
+    const removedArr = [...listToShow].filter((todo) => todo.id !== id);
+    setListToShow(removedArr);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>ToDo-App</h1>
+      <NavBar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              listToShow={listToShow}
+              error={error}
+              isLoading={isLoading}
+              removeTodo={removeTodo}
+            />
+          }
+        />
+        <Route path="addTodo" element={<AddTodo />} />
+      </Routes>
     </div>
   );
 }

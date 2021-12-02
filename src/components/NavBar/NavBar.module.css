@@ -1,0 +1,35 @@
+.nav_background {
+  background: #222;
+  padding: 0 15px;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+.menu li a {
+  display: block;
+  padding: 15px 10px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: rgb(59, 193, 202);
+  font-weight: 600;
+  display: block;
+  transition: 0.3s background-color;
+}
+
+.menu a:hover {
+  background-color: #005f5f;
+}
+
+.menu a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}

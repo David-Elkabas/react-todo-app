@@ -1,40 +1,34 @@
-# About
+# 🎯 About
 
 a simple todo-app that can fetch data from remote api and update, add or delete the data.
 
+## 👾 Demo
+
+TODO: add a gif
+
 ## Features
 
-fetch a number of tasks from remote api
-edit any task
-Create a new task
-Mark the task as completed
-Delete a task
+- fetch a number of tasks from remote api
+- edit any task
+- Create a new task
+- Mark the task as completed
+- Delete a task
 
-## Available Scripts
+## 🧰 Tech
 
-In the project directory, you can run:
+- React Router
+- Axios
+- React-hook-form
 
-### `npm start`
+## 🛠️ Execution & Quick Start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```shell
+$ git clone https://github.com/r-park/todo-react-redux.git
+$ cd todo-react-redux
+$ npm install
+$ npm start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 👀 License
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
+MIT

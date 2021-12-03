@@ -1,5 +1,6 @@
 import TodoTask from "../TodoTask/TodoTask";
 import { useState, useEffect, useRef } from "react";
+import EditTodo from "../EditTodo/EditTodo";
 
 const Home = (props) => {
   const { listToShow, error, isLoading, removeTodo } = props;
@@ -38,10 +39,10 @@ const Home = (props) => {
   };
   const handleChange = (e) => {
     setInput(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const handleSubmit = (e) => {
-    console.log("here");
+    // console.log("here");
     e.preventDefault();
     let updatedTodos = todos.map((todo) => {
       if (todo.id === edit.id) {
@@ -64,18 +65,12 @@ const Home = (props) => {
       <div>
         <div>
           {openEdit ? (
-            <form onSubmit={handleSubmit} className="todo-form">
-              <input
-                placeholder={edit.value}
-                onChange={handleChange}
-                name="text"
-                ref={inputRef}
-                className="todo-input edit"
-              />
-              <button onClick={handleSubmit} className="todo-button edit">
-                Update
-              </button>
-            </form>
+            <EditTodo
+              handleSubmit={handleSubmit}
+              value={edit.value}
+              handleChange={handleChange}
+              inputRef={inputRef}
+            />
           ) : (
             <></>
           )}

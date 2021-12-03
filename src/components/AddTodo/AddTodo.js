@@ -21,7 +21,7 @@ const AddTodo = (props) => {
       title: data.todoTask,
       userId: 1,
     };
-    // console.log(newTodo);
+    console.log(newTodo);
     addNewTodo(newTodo);
     setIsValid(true);
   };

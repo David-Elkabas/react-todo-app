@@ -15,6 +15,7 @@ const Home = (props) => {
 
   useEffect(() => {
     setTodos(listToShow);
+    console.log(error);
   }, [listToShow]);
 
   const removeOneTodo = (id) => {
@@ -39,10 +40,8 @@ const Home = (props) => {
   };
   const handleChange = (e) => {
     setInput(e.target.value);
-    // console.log(e.target.value);
   };
   const handleSubmit = (e) => {
-    // console.log("here");
     e.preventDefault();
     let updatedTodos = todos.map((todo) => {
       if (todo.id === edit.id) {
@@ -76,6 +75,7 @@ const Home = (props) => {
           )}
         </div>
         <div>
+          {/* why the hell does this line print to the DOM ";" */}
           {error && <p>Error: {error} </p>};
           {todos &&
             todos.map((todo) => {

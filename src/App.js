@@ -8,7 +8,7 @@ import "./App.css";
 
 function App() {
   const [listToShow, setListToShow] = useState([]);
-  const url = "https://jsonplaceholder.typicode.com/toddfgos";
+  const url = "https://jsonplaceholder.typicode.com/todos";
   const [result, error, isLoading] = useFetchHook(url);
 
   useEffect(() => {

@@ -75,8 +75,7 @@ const Home = (props) => {
           )}
         </div>
         <div>
-          {/* why the hell does this line print to the DOM ";" */}
-          {error && <p>Error: {error} </p>};
+          {error && <p>Error: {error} </p>}
           {todos &&
             todos.map((todo) => {
               return (

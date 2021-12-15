@@ -1,6 +1,6 @@
 const express = require("express");
 const uuid = require("uuid");
-const todos = require("../../Todos");
+// const todos = require("../../Todos");
 const router = express.Router();
 const Todo = require("../../models/Todo");
 
@@ -15,14 +15,12 @@ router.get("/", async (req, res) => {
 });
 
 // GET a single todo
-router.get("/:id", (req, res) => {
-  const isFound = todos.some((todo) => todo.id === parseInt(req.params.id));
-  if (isFound) {
-    res.json(todos.filter((todo) => todo.id === parseInt(req.params.id)));
-  } else {
-    res
-      .status(400)
-      .json({ message: `no todo with id of ${req.params.id} was found` });
+router.get("/:id", async (req, res) => {
+  try {
+    const todo = await Todo.findById(req.params.id);
+    res.json(todo);
+  } catch (error) {
+    res.json({ message: error });
   }
 });
 

@@ -2,10 +2,16 @@ const express = require("express");
 const uuid = require("uuid");
 const todos = require("../../Todos");
 const router = express.Router();
+const Todo = require("../../models/Todo");
 
 // GET all todos
-router.get("/", (req, res) => {
-  res.json(todos);
+router.get("/", async (req, res) => {
+  try {
+    const todos = await Todo.find();
+    res.json(todos);
+  } catch (error) {
+    res.json({ message: error });
+  }
 });
 
 // GET a single todo
@@ -21,17 +27,23 @@ router.get("/:id", (req, res) => {
 });
 
 // CREATE one todo
-router.post("/", (req, res) => {
-  const newTodo = {
-    id: uuid.v4(), //create a random id
+router.post("/", async (req, res) => {
+  const newTodo = new Todo({
+    // id: uuid.v4(), //create a random id
     title: req.body.title,
     completed: false,
-  };
+  });
   if (!newTodo.title) {
     return res.status(400).json({ message: "please include a title" });
   }
-  todos.push(newTodo);
-  res.json(todos);
+  try {
+    const saveTodo = await newTodo.save();
+    res.json(saveTodo);
+  } catch (error) {
+    res.json({ message: error });
+  }
+  // todos.push(newTodo);
+  // res.json(todos);
 });
 
 // UPDATE one todo

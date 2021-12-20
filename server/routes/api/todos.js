@@ -45,36 +45,26 @@ router.post("/", async (req, res) => {
 });
 
 // UPDATE one todo
-router.put("/:id", (req, res) => {
-  const isFound = todos.some((todo) => todo.id === parseInt(req.params.id));
-  if (isFound) {
-    const updateTodo = req.body;
-    todos.forEach((todo) => {
-      if (todo.id === parseInt(req.params.id)) {
-        todo.title = updateTodo.title ? updateTodo.title : todo.title;
-        todo.completed = updateTodo.completed
-          ? updateTodo.completed
-          : todo.completed;
-        res.json({ message: "todo updated", todo });
-      }
-    });
-  } else {
-    res
-      .status(400)
-      .json({ message: `no todo with id of ${req.params.id} was found` });
+router.patch("/:id", async (req, res) => {
+  try {
+    const updatedTodo = await Todo.updateOne(
+      { _id: req.params.id },
+      { $set: { title: req.body.title, completed: req.body.completed } }
+    );
+    res.json(updatedTodo);
+  } catch (error) {
+    res.json({ message: error });
   }
 });
 
 // DELETE a single todo
-router.delete("/:id", (req, res) => {
-  const isFound = todos.some((todo) => todo.id === parseInt(req.params.id));
-  if (isFound) {
-    newTodos = todos.filter((todo) => todo.id !== parseInt(req.params.id));
-    res.json({ message: "todo deleted", todos: newTodos });
-  } else {
-    res
-      .status(400)
-      .json({ message: `no todo with id of ${req.params.id} was found` });
+// GET a single todo
+router.delete("/:id", async (req, res) => {
+  try {
+    const removedTodo = await Todo.remove({ _id: req.params.id });
+    res.json(removedTodo);
+  } catch (error) {
+    res.json({ message: error });
   }
 });
 

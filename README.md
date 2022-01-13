@@ -6,7 +6,7 @@ a simple todo-app that can fetch data from remote api and update, add or delete 
 
 ## 👾 Demo
 
-TODO: add a gif
+TODO: add a gif - still in building mode
 
 ## Features
 
